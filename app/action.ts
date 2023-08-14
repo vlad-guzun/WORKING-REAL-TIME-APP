@@ -31,7 +31,7 @@ export async function postData(formData: FormData){
         cluster: 'eu',
         useTLS: true,
     })
-    pusher.trigger('chat','channel', {
+    await pusher.trigger('chat','channel', {
         message: `${JSON.stringify(data)}\n\n`,
     })
 }
