@@ -5,7 +5,6 @@ import Chat from '@/components/Chat'
 import { prisma } from '@/lib/db'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-import { Fragment } from 'react'
 
 async function getData(){
     const data = await prisma.message.findMany({
@@ -48,9 +47,7 @@ const ChatHome = async() => {
     <div className='h-screen flex flex-col'>
         <Chat data={data as any}/>
         <Form />
-        <Fragment>
             <button className='bg-teal-300 px-2 text-white mt-2' onClick={() => signIn()}>Login</button>
-        </Fragment>
     </div>
   )
 }
