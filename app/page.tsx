@@ -1,13 +1,23 @@
+'use client'
+
+import { signIn } from "next-auth/react"
+import { useSession } from "next-auth/react"
+import Link from "next/link"
 
 
 export default function Home() {
+
+  const {data: session} = useSession()
+  
   return (
-    <div>
-      <div className='flex flex-col items-start justify-center border p-7 mt-20'>
-        <h1 className='text-pink-800 hover:text-pink-700 transition-all font-bold'>1.Login</h1>
-        <h1 className='font-bold'><span className='text-pink-800 hover:text-pink-700 transition-all'>2.Copy-paste this url <span className='underline text-teal-500'>https://real-time-conversation.vercel.app/chat</span></span><span className='text-red-600'> (paste the link, clicking on the link will NOT work!)</span></h1>
-        <h1 className='font-bold text-pink-700'>3.Connect one device with google and another with Github and have a <span className='text-teal-500'>real time conversation</span></h1>
-      </div>
+    <div className='flex items-center justify-center md:mt-32 mt-24'>
+      {session && session.user? (
+        <Link className='font-bold text-white bg-teal-500 p-2 hover:bg-teal-600 transition-all' href='/chat'>Click me to chat</Link>
+        ) : (
+          <div>
+            <button className='px-2 bg-teal-500 hover:bg-teal-600 text-white font-bold' onClick={() => signIn()}>Login</button>
+        </div>
+      )}
     </div>
   )
 }

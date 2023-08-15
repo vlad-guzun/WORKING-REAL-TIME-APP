@@ -47,7 +47,6 @@ const ChatHome = async() => {
     <div className='h-screen flex flex-col'>
         <Chat data={data as any}/>
         <Form />
-            <button className='bg-teal-300 px-2 text-white mt-2' onClick={() => signIn()}>Login</button>
     </div>
   )
 }
